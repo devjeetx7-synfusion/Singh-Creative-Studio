@@ -9,6 +9,10 @@ The complete theme is **`singh-creative-studio-blogger.xml`**. This is still a d
 3. Replace the Theme Editor contents with the full XML file and save.
 4. Verify the saved theme in Blogger and check it on phone and desktop. The theme uses Blogger responsive mode, a device-width viewport, fluid layouts, and safe-area padding.
 
+## Mobile layout refinements
+
+The existing light editorial system is retained. The mobile hero now uses fluid heading sizes and tighter vertical rhythm, keeps the comma attached to “MASTERPIECE,” moves the CTA into a larger touch target, and adds a slow, reduced-motion-aware float to the CSS gradient sphere. The mobile header uses a readable wordmark, a 44px Explore Work link, a 44px Skip Intro control in the cinematic overlay, and a 46px menu button. The menu constrains its height, locks background scrolling while open, closes on Escape/outside click/navigation, and restores scroll when dismissed. Fluid CSS targets narrow phones through tablets without a separate design for each width.
+
 ## Automatic intro
 
 A bright, four-scene opening plays automatically for about **14.8 seconds** (3.1 + 4 + 4.1 + 3.6 seconds), then fades into the regular site. It moves from an abstract spark, to an owner-photo portrait sequence, to concept art for the creative disciplines, and finally to a text-only brand reveal. It uses no autoplay audio. **Skip Intro** is available throughout, and Replay Intro is available from the site navigation and final scene.
@@ -40,4 +44,4 @@ Update the `PROJECTS` array to replace demonstration concepts with confirmed por
 
 ## Verification status
 
-XML parsing, JavaScript syntax checking, CSS parsing, and DOM interaction tests were run for the four-scene timing, automatic reveal, skip/replay, session behavior, hidden-tab pause/resume, project modal, reduced-motion timing, silent default, and portrait-image fallback. A real browser/device viewport check and installation/save in an actual Blogger account have **not** been performed in this environment; verify the Blogger Theme Editor save and visual rendering before publishing.
+XML parsing, JavaScript syntax checking, CSS parsing, and DOM interaction tests cover the four-scene timing, automatic reveal, skip/replay, session behavior, hidden-tab pause/resume, project modal, reduced-motion timing, silent default, and mobile-menu opening/closing, focus, and scroll locking. Actual rendered layout measurements at the requested widths/orientations, real-device performance, and installation/save in a Blogger account have **not** been performed in this environment; verify them in a browser and Blogger before publishing.
