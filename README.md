@@ -1,33 +1,38 @@
 # Singh Creative Studio — Blogger XML theme
 
-This repository now contains a self-contained Blogger theme at **`singh-creative-studio-blogger.xml`**. It is an XML document for Blogger's Theme Editor, not an HTML preview or a React app. It needs no React, TypeScript, Vite, npm install, Node runtime, build step, or separately hosted application.
+The complete Blogger theme is **`singh-creative-studio-blogger.xml`**. This remains a Blogger XML project: no React, JSX, TypeScript, Vite, npm install, Node runtime, or build step is needed to install or run it.
 
-## Install in Blogger
+## Install
 
-1. Open Blogger Dashboard → **Theme** → open the menu beside **Customize** → **Edit HTML**.
-2. Back up/download your current theme first.
-3. Replace the Theme Editor contents with the complete contents of `singh-creative-studio-blogger.xml` and save.
-4. Open your blog on a phone and desktop to check the layout, navigation, contact handoff, and any external libraries permitted by your settings.
+1. In Blogger Dashboard, go to **Theme** → menu beside **Customize** → **Edit HTML**.
+2. Back up the current theme.
+3. Replace the Theme Editor contents with the complete XML file and save.
+4. Check the blog on a phone and desktop; the theme enables Blogger responsive mode with `b:responsive='true'` and includes a width=device-width viewport declaration.
 
-The XML was parsed locally for well-formedness and the inline JavaScript was checked with Node's syntax checker. This project has **not** been installed or tested on an actual Blogger account; save it in Blogger and check its Theme Editor validation before publishing.
+The previous theme already declared a viewport and had media queries, so the mobile issue was not simply a missing viewport. Its root HTML did not enable Blogger responsive mode. The update adds that Blogger setting and replaces the fixed multi-section opening with a viewport-filling, safe-area-aware storyboard and explicit responsive layouts.
 
-## Owner-editable settings
+## Experience
 
-At the beginning of the inline JavaScript near the bottom of the XML, edit `STUDIO_CONFIG`:
+The eight-scene story is the first view. Next, Back, Skip Story, Replay Story, keyboard arrows, Escape, and touch swipes are implemented. The website is inert and visually hidden behind the story until the visitor skips or completes it. With JavaScript disabled, a `noscript` fallback shows the website instead. The story can be replayed from the site navigation.
 
-- Studio name and founder name
-- `whatsapp`: digits only, international country code included (for example `919876543210`)
-- `email`: optional email address
-- `instagram` and `behance`: replace the sample `YOUR_HANDLE` URLs with the studio's real profiles
+Three.js r128 is loaded asynchronously from cdnjs for genuine 3D geometry, lights, particles, camera movement and scene transitions. It is a progressive enhancement; controls and CSS visual fallbacks remain available if WebGL or the CDN fails. Reduced-motion preferences disable continuous 3D animation.
 
-The project list is the `PROJECTS` array directly below it. Replace titles, categories, descriptions and process notes with verified project details. Set `image` to an externally hosted image URL and `video` to an externally hosted video URL when actual, approved assets exist. Both are empty for the demonstration concepts. Video playback is only shown for projects with a configured video URL. Use an HTTPS host that allows public embedding/hotlinking and provides stable URLs.
+## Owner-editable content
 
-The founder portrait is an explicitly labelled CSS placeholder. Replace it with an approved, publicly hosted image before presenting it as Mukesh Singh's portrait. The founder intro and practice text are editable in the XML body. No client names, testimonials, awards, experience, qualifications, or software expertise have been fabricated.
+At the start of the inline script near the end of the XML, edit `STUDIO_CONFIG`:
 
-## External resources and limitations
+- Studio and founder names
+- `whatsapp`: digits only with international country code (example format `919876543210`)
+- Optional `email`
+- `instagram` and `behance`: replace `YOUR_HANDLE` with real profile URLs
 
-- Space Grotesk and DM Mono load from Google Fonts; local system-font fallbacks are provided.
-- Three.js r128 loads from cdnjs to enhance the opening and portal with interactive 3D. If the library or WebGL is unavailable, CSS artwork remains and the rest of the site stays usable. The theme does not rely on 3D to display its content.
-- No audio autoplays. The opt-in sound control synthesizes a quiet tone in the browser with Web Audio.
-- Contact has no server-side backend. With a WhatsApp number configured, the validated form opens a prefilled WhatsApp draft; visitors still need to review and send it. If only an email is configured, it opens a mail draft. If neither is configured, a clear message says that the enquiry was not sent.
-- Portfolio images and videos need public HTTPS hosting. Blogger's built-in Studio Journal widget can display posts written in the Blogger dashboard.
+Update project titles, categories, descriptions and process notes in the `PROJECTS` array. Add actual, approved public HTTPS URLs to `image` and `video`; video controls appear only when a video URL is supplied. Until real work is provided, the existing pieces are labelled demonstration concepts, not client work. Replace the labelled founder portrait placeholder with an approved publicly hosted photo, and edit the founder introduction, creative vision, skills and software text only with confirmed details.
+
+The Blogger Studio Journal widget remains in the theme and can show posts authored through the Blogger dashboard.
+
+## External requirements and verification
+
+- Space Grotesk and DM Mono are loaded from Google Fonts, with system font fallbacks.
+- Project images and videos need stable, publicly accessible HTTPS hosting that permits embedding.
+- Contact has no backend. A configured WhatsApp number opens a prefilled WhatsApp draft; visitors must review and send it. An email-only configuration opens a mail draft. With neither configured, the form states that details were not sent.
+- The XML structure and inline JavaScript are validated locally, and a temporary DOM-based test exercised scene navigation, skip/replay, project filtering/details, and mobile-menu actions. I could not run a real browser/device viewport test or install this in an actual Blogger account, so visual measurements at the requested screen widths and Blogger Theme Editor save still need owner-side verification.
