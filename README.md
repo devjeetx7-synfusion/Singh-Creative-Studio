@@ -1,32 +1,33 @@
-# Singh Creative Studio
+# Singh Creative Studio — Blogger XML theme
 
-A responsive, cinematic portfolio experience for Mukesh Singh. Built with React, TypeScript, Vite, Three.js and GSAP.
+This repository now contains a self-contained Blogger theme at **`singh-creative-studio-blogger.xml`**. It is an XML document for Blogger's Theme Editor, not an HTML preview or a React app. It needs no React, TypeScript, Vite, npm install, Node runtime, build step, or separately hosted application.
 
-## Run locally
+## Install in Blogger
 
-```sh
-npm install
-npm run dev
-```
+1. Open Blogger Dashboard → **Theme** → open the menu beside **Customize** → **Edit HTML**.
+2. Back up/download your current theme first.
+3. Replace the Theme Editor contents with the complete contents of `singh-creative-studio-blogger.xml` and save.
+4. Open your blog on a phone and desktop to check the layout, navigation, contact handoff, and any external libraries permitted by your settings.
 
-Production build: `npm run build` (output in `dist/`).
+The XML was parsed locally for well-formedness and the inline JavaScript was checked with Node's syntax checker. This project has **not** been installed or tested on an actual Blogger account; save it in Blogger and check its Theme Editor validation before publishing.
 
-## Owner configuration
+## Owner-editable settings
 
-- **WhatsApp enquiries:** set `whatsappNumber` in `src/config.ts` to the full international number using digits only (country code included). Until configured, the enquiry form validates input and clearly explains that nothing was sent; it does not show a false success state.
-- **Portfolio:** update `src/data/projects.ts` and the project artwork styles in `src/styles.css`. Existing projects are explicitly demonstration concepts, not client commissions. Add real project imagery/video only when supplied and update labels accordingly.
-- **Founder portrait:** replace the labelled portrait placeholder in `src/App.tsx` with an approved photograph.
-- **Founder profile:** update the editable introduction and practice copy in the Founder section when confirmed details are available.
-- No email, WhatsApp number, client names, testimonials, awards, years of experience, or software expertise have been invented.
+At the beginning of the inline JavaScript near the bottom of the XML, edit `STUDIO_CONFIG`:
 
-## Experience notes
+- Studio name and founder name
+- `whatsapp`: digits only, international country code included (for example `919876543210`)
+- `email`: optional email address
+- `instagram` and `behance`: replace the sample `YOUR_HANDLE` URLs with the studio's real profiles
 
-- The introductory journey is scroll-led rather than a blocking preloader; **Skip Intro** jumps straight to work.
-- Hero and portal artwork use interactive, real-time Three.js geometry. Below-fold Three.js scenes initialize only when approaching the viewport. A CSS fallback orb is shown if WebGL setup fails.
-- Sound is off by default. The opt-in toggle creates a quiet synthesized ambient tone using Web Audio after a user gesture.
-- Project cards open keyboard-dismissible details. Demo artwork is CSS-drawn and is not represented as client work or as video.
-- Animations respect `prefers-reduced-motion`; particle counts and pixel ratio are reduced on mobile.
+The project list is the `PROJECTS` array directly below it. Replace titles, categories, descriptions and process notes with verified project details. Set `image` to an externally hosted image URL and `video` to an externally hosted video URL when actual, approved assets exist. Both are empty for the demonstration concepts. Video playback is only shown for projects with a configured video URL. Use an HTTPS host that allows public embedding/hotlinking and provides stable URLs.
 
-## Contact configuration
+The founder portrait is an explicitly labelled CSS placeholder. Replace it with an approved, publicly hosted image before presenting it as Mukesh Singh's portrait. The founder intro and practice text are editable in the XML body. No client names, testimonials, awards, experience, qualifications, or software expertise have been fabricated.
 
-There is no backend in this project. Configure the WhatsApp number in `src/config.ts` to make the form open a prefilled enquiry in WhatsApp. Visitors review and send it in WhatsApp; the site does not claim the request has been delivered.
+## External resources and limitations
+
+- Space Grotesk and DM Mono load from Google Fonts; local system-font fallbacks are provided.
+- Three.js r128 loads from cdnjs to enhance the opening and portal with interactive 3D. If the library or WebGL is unavailable, CSS artwork remains and the rest of the site stays usable. The theme does not rely on 3D to display its content.
+- No audio autoplays. The opt-in sound control synthesizes a quiet tone in the browser with Web Audio.
+- Contact has no server-side backend. With a WhatsApp number configured, the validated form opens a prefilled WhatsApp draft; visitors still need to review and send it. If only an email is configured, it opens a mail draft. If neither is configured, a clear message says that the enquiry was not sent.
+- Portfolio images and videos need public HTTPS hosting. Blogger's built-in Studio Journal widget can display posts written in the Blogger dashboard.
